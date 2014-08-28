@@ -29,13 +29,38 @@ int arrayCountNegative(int * array, int len)
 }
 
 int arrayIsIncreasing(int * array, int len)
-{    
-    return 0;
+{   
+    int i = 0;
+    int value = 1;
+
+    while (i < len && value == 1)
+    {
+      if (array[i + 1] >= array[i])
+      {
+        value = 1;
+      }
+      else
+      {
+        value = 0;
+      }
+    i++;
+    } 
+    return(value);
 }
 
 int arrayIndexRFind(int needle, const int * haystack, int len)
 {
-    return 0;
+    int i;
+    int index = -1;
+    
+    for (i = 0; i < len; i++)
+    {
+      if (haystack[i] == needle)
+      {
+        index = i;
+      }
+    }
+    return(index);
 }
 
 int arrayFindSmallest(int * array, int len)
