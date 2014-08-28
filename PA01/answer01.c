@@ -15,7 +15,17 @@ int arraySum(int * array, int len)
 
 int arrayCountNegative(int * array, int len)
 {
-    return 0;
+    int i;
+    int count = 0;
+ 
+    for (i = 0; i < len; i++)
+    {
+      if (array[i] < 0)
+      {
+        count = count + 1;
+      }
+    }
+    return(count);
 }
 
 int arrayIsIncreasing(int * array, int len)
