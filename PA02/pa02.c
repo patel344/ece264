@@ -40,7 +40,13 @@ int main(int argc, char * * argv)
     // -- my_strchr, should be: "llo World!", "(null)", and ""
     printf("my_strchr(\"%s\", 'l') = %s\n", s1, my_strchr(s1, 'l'));
     printf("my_strchr(\"%s\", 'o') = %s\n", s2, my_strchr(s2, 'o'));
-    printf("my_strchr(\"%s\", '\\0') = %s\n", s3, my_strchr(s3, '\0'));
+    printf("my_strchr(\"%s\", '\\0') = %s\n", s3, my_strchr("Foo", '\0'));
+
+
+// -- my_strrchr, should be: "orld!", "(null)", and ""
+    printf("my_strrchr(\"%s\", 'l') = %s\n", s1, my_strrchr(s1, 'o'));
+    printf("my_strrchr(\"%s\", 'o') = %s\n", s2, my_strrchr(s2, 'z'));
+    printf("my_strrchr(\"%s\", '\\0') = %s\n", s3, my_strrchr("Foo", 'F'));
 
     // -- my_strstr, should be: "World!", "Hello World!", "(null)"
     printf("my_strstr(\"%s\", \"World\") = %s\n", s1, my_strstr(s1, "World"));
@@ -60,9 +66,35 @@ int main(int argc, char * * argv)
     // -- my_strcat. You will have to do this yourself... just
     // look at my_strcpy for an example, and go from there.
 
+  
+   my_strcpy(buffer, s1);
+   printf("%s\n", my_strcat(buffer, "Zippy!")); // prints "Hello World! Zippy!"
+   my_strcpy(buffer, s2);
+   printf("%s\n", my_strcat(buffer, "save me!")); //save me
+   my_strcpy(buffer, s3);
+   printf("%s\n", my_strcat(buffer, "gen edsl!")); //foo gen edsl
+
     // -- my_isspace. You will have to do this for yourself.
+   printf( "%d\n",my_isspace(' ')); // 1
+   printf( "%d\n",my_isspace('\f')); // 1
+   printf( "%d\n",my_isspace('\n')); // 1
+   printf( "%d\n",my_isspace('\r')); // 1
+   printf( "%d\n",my_isspace('\t')); // 1
+   printf( "%d\n",my_isspace('\v')); // 1
+
+   int ch;
+   for(ch = 'A'; ch <= 'Z'; ++ch)
+   {
+     printf("%d\n",my_isspace(ch)); // always 0
+   }
 
     // -- my_atoi. You will have to do this for yourself.
+   printf ("My_Atoi %d\n",my_atoi("0")); // 0
+   printf ("%d\n",my_atoi("-12")); // -12
+   printf ("%d\n",my_atoi("15th of March would be the ides.")); // 15
+   printf ("%d\n",my_atoi("4 months to Summer.")); // 4
+   printf ("%d\n",my_atoi("\n\f\t\v\r 6 white space characters handled correctly.")); // 6
+   printf ("%d\n",my_atoi("garbage, instead of a number like 73 for example, should yield a zero")); // 0
 
     return EXIT_SUCCESS;
 }
