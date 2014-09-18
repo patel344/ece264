@@ -5,24 +5,34 @@
 char * strcat_ex(char * * dest, int * n, const char * src)
 {
 	//Local Declarations
-    char* buffer = NULL;
+    char* buffer;
 
     //Executalbe Statements
 	if ((*dest == NULL )|| (*n < (strlen(*dest) + strlen(src) + 1)))
-	{  
-		*n = 1 + 2 * (strlen(*dest) + strlen(src));
-		buffer = (char*) malloc(*n * sizeof(char));
-		//*buffer = '\0';
-		//if(*dest != NULL)
-	    buffer = strcpy(buffer,*dest);
+	{  if(*dest != NULL)
+       {
+          *n = 1 + 2 * (strlen(*dest) + strlen(src)); 
+       }
+       else
+       {
+         *n = 1 + 2 * (strlen(src)); 
+       }
+	   buffer = malloc(*n * sizeof(char));
+        *buffer = '\0'; 
+        if(*dest != NULL)
+        {
+        buffer = strcpy(buffer,*dest);
+        }
 		free(*dest);
 		*dest = buffer;
 		*dest = strcat(*dest,src);
+       // dest[strlen(*dest) - 1] = '\0';
 	}
-        else
-        {
-               *dest = strcat(*dest,src);
-        }
+    else
+    {
+        *dest = strcat(*dest,src);
+        //dest[strlen(*dest) - 1] = '\0';
+    }
     
 	return *dest;
 }
@@ -49,7 +59,7 @@ char * * explode(const char * str, const char * delims, int * arrLen)
 	}
 	// Create the return array
 	strArr = malloc((N+1) * sizeof(char *));
-
+    //strArr = NULL;
 	//Filling the Arrays
 	for(i = 0; i < strlen(str); i++) 
     {
@@ -57,6 +67,7 @@ char * * explode(const char * str, const char * delims, int * arrLen)
     	if (strchr(delims,str[i]) != NULL)
     	 {
             newArray = malloc(strlen(str) * sizeof(char));
+            *newArray = '\0';
     	 	for (k = last; k < i; k++)
     	 	{
                 newArray[k-last] = str[k];
@@ -70,6 +81,7 @@ char * * explode(const char * str, const char * delims, int * arrLen)
     }
 
     newArray = malloc(strlen(str) * sizeof(char));
+    *newArray = '\0';
     for(i = last; i < strlen(str); i++)
     {
     	newArray[i-last] = str[i];
@@ -82,7 +94,7 @@ char * * explode(const char * str, const char * delims, int * arrLen)
 char * implode(char * * strArr, int len, const char * glue)
 {
     int i;
-    int length;
+    int length = 0;
     char * newArray;
     for(i = 0; i < len; i++)
     {
@@ -91,28 +103,46 @@ char * implode(char * * strArr, int len, const char * glue)
     }
 
     newArray = malloc((1 + 2 * length) * sizeof(char));
+    *newArray = '\0';
     for(i = 0; i < len; i++)
     {
-        strcat_ex(&newArray,&length,strArr[i]);
-        strcat_ex(&newArray,&length,glue);
+        newArray = strcat_ex(&newArray,&length,strArr[i]);
+        if (i != (len-1))
+        {
+             newArray = strcat_ex(&newArray,&length,glue);  
+        }
     }
+    //newArray[length - 1]= '\0';
 	return newArray;
 }
  static int cmpstringp(const void *p1, const void *p2)
  {
-    return strcmp(* (char * *) p1, * (char * *) p2);
+    const char * left = * (char **) p1;
+    const char * right = * (char **) p2;
+    return strcmp(left,right);
  }
 
 void sortStringArray(char * * arrString, int len)
 {
-    int i;
-
-    qsort(*arrString,len,sizeof(char*), cmpstringp);
-
-    for (i = 0; i < len; i++)
-    {
-        puts(arrString[i]);
-    }
+    qsort(arrString,len,sizeof(char*), cmpstringp);
 }
-void sortStringCharacters(char * str){}
-void destroyStringArray(char * * strArr, int len){} 
+ static int cmpcharp(const void *p1, const void *p2)
+ {
+    char * char_left = (char *) p1;
+    char * char_right = (char*) p2;
+    return (*char_left - *char_right);
+ }
+void sortStringCharacters(char * str)
+{
+    qsort(str,strlen(str),sizeof(char),cmpcharp);
+}
+void destroyStringArray(char * * strArr, int len)
+{
+    int i;
+    for(i=0;i<len;i++)
+    {
+       free(strArr[i]); 
+    }
+    free(strArr);
+    strArr = NULL;
+} 
