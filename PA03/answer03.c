@@ -61,26 +61,32 @@ char * * explode(const char * str, const char * delims, int * arrLen)
 	strArr = malloc((N+1) * sizeof(char *));
     //strArr = NULL;
 	//Filling the Arrays
-	for(i = 0; i < strlen(str); i++) 
+    if(N != 0)
     {
+
+
+	   for(i = 0; i < strlen(str); i++) 
+        {
        
-    	if (strchr(delims,str[i]) != NULL)
-    	 {
-            newArray = malloc(strlen(str) * sizeof(char));
-            *newArray = '\0';
-    	 	for (k = last; k < i; k++)
-    	 	{
-                newArray[k-last] = str[k];
-    	 	}
+    	   if (strchr(delims,str[i]) != NULL)
+    	   {
+                newArray = malloc((1 + strlen(str)) * sizeof(char));
+                *newArray = '\0';
+    	    	for (k = last; k < i; k++)
+    	    	{
+                  newArray[k-last] = str[k];
+    	       	}
 
-    	 newArray[k-last] = '\0';
-    	 strArr[arrInd] = newArray;
-    	 last = i + 1;
-    	 arrInd++;		
-     	 } 
+    	    newArray[k-last] = '\0';
+    	    strArr[arrInd] = newArray;
+    	    last = i + 1;
+    	    arrInd++;		
+     	   } 
+        }
     }
-
-    newArray = malloc(strlen(str) * sizeof(char));
+    
+    
+    newArray = malloc((1 + strlen(str)) * sizeof(char));
     *newArray = '\0';
     for(i = last; i < strlen(str); i++)
     {
@@ -90,6 +96,7 @@ char * * explode(const char * str, const char * delims, int * arrLen)
     strArr[N] = newArray;
     *arrLen = N+1;
     return strArr;
+
 }
 char * implode(char * * strArr, int len, const char * glue)
 {
