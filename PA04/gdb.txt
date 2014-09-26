@@ -1,0 +1,12 @@
+Undefined command: "pa04".  Try "help".
+Undefined command: "PA04".  Try "help".
+Undefined command: "grep-lite".  Try "help".
+"/home/shay/a/patel344/ECE264/solutions/ece264/PA04/grep-lite.c": not in executable format: File format not recognized
+PA04: No such file or directory.
+Starting program:  
+No executable file specified.
+Use the "file" or "exec-file" command.
+Reading symbols from /home/shay/a/patel344/ECE264/solutions/ece264/PA04/grep-lite...done.
+Starting program: /home/shay/a/patel344/ECE264/solutions/ece264/PA04/grep-lite 
+
+Program exited normally.

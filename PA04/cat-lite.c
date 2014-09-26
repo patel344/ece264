@@ -11,14 +11,32 @@ int main(int argc, char * * argv)
 	int i;
 	FILE * fp;
 
-	for(i = 1; i < argc; i ++)
+	for(i = 1; i < argc; i++)
 	{
 		if(strcmp(argv[i], "--help") == 0)
 		{
 			showHelp = TRUE;
 		}
-		
-		else if (*argv[i] == '-')
+	}
+	
+	if(showHelp)
+	{
+		printf("Usage: cat-lite [--help] [FILE]...\n"
+                       "With no FILE, or when FILE is -, read standard input.\n\n"
+
+                       "Examples:\n"
+                       "cat-lite README   Print the file README to standard output.\n"
+                       "cat-lite f - g    Print f's contents, then standard input,\n" 
+                                         "then g's contents.\n"
+                       "cat-lite          Copy standard input to standard output.\n");
+	
+		return EXIT_SUCCESS;
+	}
+
+	
+	for(i = 1; i < argc; i++)
+	{	
+		if (*argv[i] == '-')
 		{
 			fp = stdin;
 			char ch = fgetc(fp);
@@ -46,20 +64,6 @@ int main(int argc, char * * argv)
 			}
 			fclose(fp);
 		}
-	}
-	
-	if(showHelp)
-	{
-		printf("Usage: cat-lite [--help] [FILE]...\n"
-                       "With no FILE, or when FILE is -, read standard input.\n\n"
-
-                       "Examples:\n"
-                       "cat-lite README   Print the file README to standard output.\n"
-                       "cat-lite f - g    Print f's contents, then standard input,\n" 
-                                         "then g's contents.\n"
-                       "cat-lite          Copy standard input to standard output.\n");
-	
-		return EXIT_SUCCESS;
 	}
 	return 0;
 }
