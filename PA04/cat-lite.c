@@ -33,7 +33,17 @@ int main(int argc, char * * argv)
 		return EXIT_SUCCESS;
 	}
 
-	
+	if (argc == 1)
+	{
+		fp = stdin;
+		char ch = fgetc(fp);
+		while(!feof(fp))
+		{
+			fprintf(stdout,"%c",ch);
+			ch = fgetc(fp);
+		}
+	}
+		
 	for(i = 1; i < argc; i++)
 	{	
 		if (*argv[i] == '-')

@@ -37,6 +37,8 @@ gcc -Wall -Wshadow -g $SOURCE_F && \
     RAN=1 && \
     valgrind --tool=memcheck --leak-check=full --verbose --log-file=memcheck.log ./a.out "$@" 
 
+if (( RAN == 1 )) ; then
 # Leave a space before printing valgrind summary line
-echo
-cat memcheck.log | grep "ERROR SUMMARY" | tail -n 1
+    echo
+    cat memcheck.log | grep "ERROR SUMMARY" | tail -n 1
+fi

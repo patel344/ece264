@@ -14,6 +14,11 @@ int main(int argc, char * * argv)
 	int badSwitch = FALSE;
 		
 	int i;
+	if(argc == 1)
+	{
+		fprintf(stderr,"ERROR\n");
+		return 2;
+	}
 		
 	for(i = 1; i < argc; i++)
 	{
@@ -42,15 +47,15 @@ int main(int argc, char * * argv)
 
 	for(i = 1; i < argc - 1; i++)
 	{
-		if(strcmp(argv[i], "-v") == 0)
+		if(strcmp(argv[i], "-v") == 0 || strcmp(argv[i], "--invert-match") == 0)
 		{
 			invertMatch = TRUE;
 		}
-		else if(strcmp(argv[i], "-n") == 0)
+		else if(strcmp(argv[i], "-n") == 0 || strcmp(argv[i],"--line-number") == 0)
 		{
 			lineNumber = TRUE;
 		}
-		else if(strcmp(argv[i], "-q") == 0)
+		else if(strcmp(argv[i], "-q") == 0|| strcmp(argv[i],"--quiet") == 0)
 		{
 			quiet = TRUE;
 		}	
@@ -75,34 +80,36 @@ int main(int argc, char * * argv)
 	
 	
 	char* pattern = argv[i];
-	char * s;
-	for(i = 1; i < argc; i++)
+	FILE *fp = stdin;
+	if(fp == NULL)
 	{
-		FILE *fp = fopen(argv[i],"r");
-		if(fp == NULL)
-		{
-			printf("ERROR\n");
-			return 1;
-		}
+		printf("ERROR\n");
+		return 2;
+	}
 		
-		s = malloc(2000 * sizeof(char));
-		while(!feof(fp))
+	char s[2000];
+	int counter = 0;
+	int match;
+	int numMatch = 0;
+	while(fgets(s,2000,fp))
+	{
+		match = strstr(s,pattern) != NULL;
+		counter++;
+		if((match && !invertMatch) || (!match && invertMatch))
 		{
-			int counter = 0;
-			int match = strstr(s,pattern) != NULL;
-			counter++;
-			if((match && !invertMatch) || (!match && invertMatch))
+			numMatch++;
+			if(!quiet)
 			{
 				if(lineNumber)
 				{
 					printf("%d:", counter);	
 				}
-				printf("%s\n",s);
-			}
+				printf("%s",s);
+			}	
 		}
-		free(s);
-		fclose(fp);
 	}
+	
+
 	
 	/*
  *    while loop, reading each line, "line" {
@@ -114,6 +121,12 @@ int main(int argc, char * * argv)
  *       }
  *    }
  */
-
-	return 0;
+	if(numMatch > 0)
+	{
+		return 0;
+	}
+	else
+	{
+		return 1;
+	}
 }
