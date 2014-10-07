@@ -22,10 +22,10 @@ int main(int argc, char ** argv)
         //partitionAll(-1);
 	//printf("\n");
 	printf("Partition Increasing\n");
-	partitionIncreasing(4);
+	partitionIncreasing(0);
 	printf("\n");
 	printf("Partition Decreasing\n");
-	partitionDecreasing(4);
+	partitionDecreasing(8);
 	printf("\n");
 	printf("Partition Odd\n");
 	partitionOdd(4);
@@ -35,6 +35,15 @@ int main(int argc, char ** argv)
 	printf("\n");
 	printf("Partition OddnEven\n");
 	partitionOddAndEven(4);
+	printf("\n");
+	printf("Partition Prime\n");
+	partitionPrime(0);
+	printf("\n");
+	printf("Partition Prime\n");
+	partitionPrime(-1);
+	printf("\n");
+	printf("Partition Prime\n");
+	partitionOddAndEven(2);
 	printf("\n");
         return EXIT_SUCCESS;
 }
