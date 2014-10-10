@@ -137,9 +137,12 @@ void partitionAll(int value)
 	{
 		fprintf(stderr,"Must enter a positive Value\n");
 	}
-	arr = malloc(value * sizeof(int));
-	generalPartition(arr,0,value,ALL);
-	free(arr);
+	else
+	{
+		arr = malloc(value * sizeof(int));
+		generalPartition(arr,0,value,ALL);
+		free(arr);
+	}
 }
 void partitionIncreasing(int value)
 { 
@@ -149,9 +152,12 @@ void partitionIncreasing(int value)
 	{
 		fprintf(stderr,"Must enter a positive Value\n");
 	}
-	arr = malloc(value * sizeof(int));
-	generalPartition(arr,0,value,INCREASING);
-	free(arr);
+	else
+	{
+		arr = malloc(value * sizeof(int));
+		generalPartition(arr,0,value,INCREASING);
+		free(arr);
+	}
 }
 void partitionDecreasing(int value)
 { 
@@ -161,9 +167,12 @@ void partitionDecreasing(int value)
 	{
 		fprintf(stderr,"Must enter a positive Value\n");
 	}
-	arr = malloc(value * sizeof(int));
-	generalPartition(arr,0,value,DECREASING);
-	free(arr);
+	else
+	{
+		arr = malloc(value * sizeof(int));
+		generalPartition(arr,0,value,DECREASING);
+		free(arr);
+	}
 }
 void partitionOdd(int value)
 { 
@@ -173,10 +182,13 @@ void partitionOdd(int value)
 	{
 		fprintf(stderr,"Must enter a positive Value\n");
 	}
-	arr = malloc(value * sizeof(int));
-	generalPartition(arr,0,value,ODD);
-	free(arr);
-}
+	else
+	{
+		arr = malloc(value * sizeof(int));
+		generalPartition(arr,0,value,ODD);
+		free(arr);
+	}
+}	
 void partitionEven(int value)
 { 
 	int * arr;
@@ -185,9 +197,12 @@ void partitionEven(int value)
 	{
 		fprintf(stderr,"Must enter a positive Value\n");
 	}
-	arr = malloc(value * sizeof(int));
-	generalPartition(arr,0,value,EVEN);
-	free(arr);
+	else
+	{
+		arr = malloc(value * sizeof(int));
+		generalPartition(arr,0,value,EVEN);
+		free(arr);
+	}
 }
 void partitionOddAndEven(int value)
 { 
@@ -197,9 +212,12 @@ void partitionOddAndEven(int value)
 	{
 		fprintf(stderr,"Must enter a positive Value\n");
 	}
-	arr = malloc(value * sizeof(int));
-	generalPartition(arr,0,value,ODDANDEVEN);
-	free(arr);
+	else
+	{
+		arr = malloc(value * sizeof(int));
+		generalPartition(arr,0,value,ODDANDEVEN);
+		free(arr);
+	}
 }
 void partitionPrime(int value)
 { 
@@ -209,8 +227,11 @@ void partitionPrime(int value)
 	{
 		fprintf(stderr,"Must enter a positive Value\n");
 	}
-	arr = malloc(value * sizeof(int));
-	generalPartition(arr,0,value,PRIME);
-	free(arr);
+	else
+	{
+		arr = malloc(value * sizeof(int));
+		generalPartition(arr,0,value,PRIME);
+		free(arr);
+	}
 }
 
