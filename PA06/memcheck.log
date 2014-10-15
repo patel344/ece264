@@ -1,0 +1,85 @@
+==16449== Memcheck, a memory error detector
+==16449== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==16449== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==16449== Command: ./pa06
+==16449== Parent PID: 22682
+==16449== 
+--16449-- 
+--16449-- Valgrind options:
+--16449--    --tool=memcheck
+--16449--    --leak-check=full
+--16449--    --verbose
+--16449--    --log-file=memcheck.log
+--16449-- Contents of /proc/version:
+--16449--   Linux version 2.6.32-431.29.2.el6.x86_64 (mockbuild@x86-026.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Sun Jul 27 15:55:46 EDT 2014
+--16449-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--16449-- Page sizes: currently 4096, max supported 4096
+--16449-- Valgrind library directory: /usr/lib64/valgrind
+--16449-- Reading syms from /home/shay/a/patel344/ECE264/solutions/ece264/PA06/pa06
+--16449-- Reading syms from /lib64/ld-2.12.so
+--16449--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--16449--   .. build-id is valid
+--16449-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--16449--    object doesn't have a dynamic symbol table
+--16449-- Scheduler: using generic scheduler lock implementation.
+--16449-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==16449== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-16449-by-patel344-on-ecegrid-thin1.ecn.purdue.edu
+==16449== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-16449-by-patel344-on-ecegrid-thin1.ecn.purdue.edu
+==16449== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-16449-by-patel344-on-ecegrid-thin1.ecn.purdue.edu
+==16449== 
+==16449== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==16449== don't want to do, unless you know exactly what you're doing,
+==16449== or are doing some strange experiment):
+==16449==   /usr/lib64/valgrind/../../bin/vgdb --pid=16449 ...command...
+==16449== 
+==16449== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==16449==   /path/to/gdb ./pa06
+==16449== and then give GDB the following command
+==16449==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=16449
+==16449== --pid is optional if only one valgrind process is running
+==16449== 
+--16449-- REDIR: 0x4017610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--16449-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--16449-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--16449-- REDIR: 0x4017480 (index) redirected to 0x4c28c30 (index)
+--16449-- REDIR: 0x4017500 (strcmp) redirected to 0x4c29570 (strcmp)
+--16449-- Reading syms from /lib64/libc-2.12.so
+--16449--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--16449--   .. build-id is valid
+--16449-- REDIR: 0x4eb3cd0 (strcasecmp) redirected to 0x4a2255c (_vgnU_ifunc_wrapper)
+--16449-- REDIR: 0x4eb5f90 (strncasecmp) redirected to 0x4a2255c (_vgnU_ifunc_wrapper)
+--16449-- REDIR: 0x4eb1c40 (__GI_strrchr) redirected to 0x4c28ab0 (__GI_strrchr)
+--16449-- REDIR: 0x4ea9640 (malloc) redirected to 0x4c279ac (malloc)
+==16449== 
+==16449== Process terminating with default action of signal 2 (SIGINT)
+==16449==    at 0x4F0A5A0: __read_nocancel (syscall-template.S:82)
+==16449==    by 0x4EA0CE7: _IO_file_underflow@@GLIBC_2.2.5 (fileops.c:598)
+==16449==    by 0x4EA27ED: _IO_default_uflow (genops.c:440)
+==16449==    by 0x4E96EC9: _IO_getline_info (iogetline.c:74)
+==16449==    by 0x4E95D28: fgets (iofgets.c:58)
+==16449==    by 0x400D42: read_and_alloc_maze (pa06.c:64)
+==16449==    by 0x400BE2: main (pa06.c:26)
+--16449-- REDIR: 0x4eaa520 (free) redirected to 0x4c273a9 (free)
+==16449== 
+==16449== HEAP SUMMARY:
+==16449==     in use at exit: 102 bytes in 1 blocks
+==16449==   total heap usage: 1 allocs, 0 frees, 102 bytes allocated
+==16449== 
+==16449== Searching for pointers to 1 not-freed blocks
+==16449== Checked 69,776 bytes
+==16449== 
+==16449== LEAK SUMMARY:
+==16449==    definitely lost: 0 bytes in 0 blocks
+==16449==    indirectly lost: 0 bytes in 0 blocks
+==16449==      possibly lost: 0 bytes in 0 blocks
+==16449==    still reachable: 102 bytes in 1 blocks
+==16449==         suppressed: 0 bytes in 0 blocks
+==16449== Reachable blocks (those to which a pointer was found) are not shown.
+==16449== To see them, rerun with: --leak-check=full --show-reachable=yes
+==16449== 
+==16449== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
+--16449-- 
+--16449-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--16449-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==16449== 
+==16449== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 6 from 6)
