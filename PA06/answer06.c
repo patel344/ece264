@@ -84,6 +84,7 @@ void traverse(char** maze, int x, int y, int deltax, int deltay, int w, int h)
 		}
 		if ((south != SPACE) && (east != SPACE) && (west != SPACE) && (north != SPACE))
 		{
+			maze[x][y] = TRACK;
 			end = 1;
 		}
 		if((east == SPACE && deltay != 1) || (west == SPACE && deltay != -1) || (north == SPACE && deltax != -1) || (south == SPACE && deltax != 1) || end == 1)
@@ -107,52 +108,6 @@ void traverse(char** maze, int x, int y, int deltax, int deltay, int w, int h)
 			}
 			break;
 		}
-	/*	else
-		{
-			if(east == SPACE && deltay == 1)
-			{
-				if(y + deltay < w && y + deltay >= 0)
-				{
-					y += deltay;
-				}	
-				else
-				{
-					break;
-				}			}
-			if(west == SPACE && deltay == -1)
-			{
-				if(y + deltay < w && y + deltay >= 0)
-				{
-					y += deltay;
-				}
-				else
-				{
-					break;
-				}
-			}	
-			if(south == SPACE && deltax == 1)
-			{
-				if(x + deltax < h && x + deltax >= 0)
-				{
-					x += deltax;
-				}
-				else
-				{
-					break;
-				}
-			}
-			if(north == SPACE && deltax == -1)
-			{
-				if(x + deltax < h && x + deltax >= 0)
-				{
-					x += deltax;
-				}
-				else
-				{
-					break;
-				}
-			}
-		}*/
 	}
 		print_maze_directions(-deltax,-deltay,numsteps);
 	
