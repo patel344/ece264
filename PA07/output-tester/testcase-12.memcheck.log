@@ -1,0 +1,94 @@
+==10750== Memcheck, a memory error detector
+==10750== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==10750== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==10750== Command: ./a.out images/02-cat-chess.ee264 student-out-11_02-cat-chess.bmp
+==10750== Parent PID: 10747
+==10750== 
+--10750-- 
+--10750-- Valgrind options:
+--10750--    --tool=memcheck
+--10750--    --leak-check=full
+--10750--    --verbose
+--10750--    --log-file=memcheck-11.log
+--10750-- Contents of /proc/version:
+--10750--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--10750-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--10750-- Page sizes: currently 4096, max supported 4096
+--10750-- Valgrind library directory: /usr/lib64/valgrind
+--10750-- Reading syms from /tmp/.eu3jWQ/a.out
+--10750-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--10750--    object doesn't have a dynamic symbol table
+--10750-- Reading syms from /lib64/ld-2.12.so
+--10750--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--10750--   .. build-id is valid
+--10750-- Scheduler: using generic scheduler lock implementation.
+--10750-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==10750== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-10750-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==10750== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-10750-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==10750== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-10750-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==10750== 
+==10750== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==10750== don't want to do, unless you know exactly what you're doing,
+==10750== or are doing some strange experiment):
+==10750==   /usr/lib64/valgrind/../../bin/vgdb --pid=10750 ...command...
+==10750== 
+==10750== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==10750==   /path/to/gdb ./a.out
+==10750== and then give GDB the following command
+==10750==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=10750
+==10750== --pid is optional if only one valgrind process is running
+==10750== 
+--10750-- REDIR: 0x3968617610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--10750-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--10750-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--10750-- REDIR: 0x3968617480 (index) redirected to 0x4a07c30 (index)
+--10750-- REDIR: 0x3968617500 (strcmp) redirected to 0x4a08570 (strcmp)
+--10750-- Reading syms from /lib64/libc-2.12.so
+--10750--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--10750--   .. build-id is valid
+--10750-- REDIR: 0x3968a84cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10750-- REDIR: 0x3968a86f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10750-- REDIR: 0x3968a82c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--10750-- REDIR: 0x3968a7f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10750-- REDIR: 0x3968b28420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--10750-- REDIR: 0x3968a81120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10750-- REDIR: 0x3968b336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--10750-- REDIR: 0x3968a8aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--10750-- REDIR: 0x3968a84500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--10750-- REDIR: 0x3968a7b520 (free) redirected to 0x4a063a9 (free)
+--10750-- REDIR: 0x3968a7a640 (malloc) redirected to 0x4a069ac (malloc)
+--10750-- REDIR: 0x3968a89670 (memcpy) redirected to 0x4a08b60 (memcpy)
+==10750== Invalid read of size 1
+==10750==    at 0x400B8C: Image_load (answer07.c:71)
+==10750==    by 0x401CB4: main (<stdin>:61)
+==10750==  Address 0x4c3b344 is 0 bytes after a block of size 36 alloc'd
+==10750==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==10750==    by 0x400B08: Image_load (answer07.c:64)
+==10750==    by 0x401CB4: main (<stdin>:61)
+==10750== 
+--10750-- REDIR: 0x3968a81160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--10750-- REDIR: 0x3968a839a0 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--10750-- REDIR: 0x3968a839e0 (__GI_memset) redirected to 0x4a09a50 (memset)
+==10750== 
+==10750== HEAP SUMMARY:
+==10750==     in use at exit: 0 bytes in 0 blocks
+==10750==   total heap usage: 6 allocs, 6 frees, 69,596 bytes allocated
+==10750== 
+==10750== All heap blocks were freed -- no leaks are possible
+==10750== 
+==10750== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+==10750== 
+==10750== 1 errors in context 1 of 1:
+==10750== Invalid read of size 1
+==10750==    at 0x400B8C: Image_load (answer07.c:71)
+==10750==    by 0x401CB4: main (<stdin>:61)
+==10750==  Address 0x4c3b344 is 0 bytes after a block of size 36 alloc'd
+==10750==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==10750==    by 0x400B08: Image_load (answer07.c:64)
+==10750==    by 0x401CB4: main (<stdin>:61)
+==10750== 
+--10750-- 
+--10750-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--10750-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==10750== 
+==10750== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)

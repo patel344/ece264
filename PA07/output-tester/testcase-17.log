@@ -1,0 +1,11 @@
+
+/**
+ * Testcase 16 :: images/corrupt-testcases/02-check-magic-number.ee264 
+ * File has corrupted magic bits. (Image_load should return NULL.)
+ */
+Attempt to read 'images/corrupt-testcases/02-check-magic-number.ee264' as .ee264 format
+Success.
+Writing out 'student-out-16_-' in .bmp format
+   Memory errors detected.
+   Valgrind log saved in output-tester/testcase-17.memcheck.log.
+Image_load(...) should return NULL for corrupt images

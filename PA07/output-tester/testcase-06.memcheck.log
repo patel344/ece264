@@ -1,0 +1,91 @@
+==3290== Memcheck, a memory error detector
+==3290== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==3290== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==3290== Command: ./a.out images/bmps/01-smile.bmp student-out-05_01-smile.ee264
+==3290== Parent PID: 3287
+==3290== 
+--3290-- 
+--3290-- Valgrind options:
+--3290--    --tool=memcheck
+--3290--    --leak-check=full
+--3290--    --verbose
+--3290--    --log-file=memcheck-05.log
+--3290-- Contents of /proc/version:
+--3290--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--3290-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--3290-- Page sizes: currently 4096, max supported 4096
+--3290-- Valgrind library directory: /usr/lib64/valgrind
+--3290-- Reading syms from /tmp/.eu3jWQ/a.out
+--3290-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--3290--    object doesn't have a dynamic symbol table
+--3290-- Reading syms from /lib64/ld-2.12.so
+--3290--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--3290--   .. build-id is valid
+--3290-- Scheduler: using generic scheduler lock implementation.
+--3290-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==3290== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-3290-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==3290== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-3290-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==3290== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-3290-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==3290== 
+==3290== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==3290== don't want to do, unless you know exactly what you're doing,
+==3290== or are doing some strange experiment):
+==3290==   /usr/lib64/valgrind/../../bin/vgdb --pid=3290 ...command...
+==3290== 
+==3290== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==3290==   /path/to/gdb ./a.out
+==3290== and then give GDB the following command
+==3290==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=3290
+==3290== --pid is optional if only one valgrind process is running
+==3290== 
+--3290-- REDIR: 0x3968617610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--3290-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--3290-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--3290-- REDIR: 0x3968617480 (index) redirected to 0x4a07c30 (index)
+--3290-- REDIR: 0x3968617500 (strcmp) redirected to 0x4a08570 (strcmp)
+--3290-- Reading syms from /lib64/libc-2.12.so
+--3290--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--3290--   .. build-id is valid
+--3290-- REDIR: 0x3968a84cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3290-- REDIR: 0x3968a86f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3290-- REDIR: 0x3968a82c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--3290-- REDIR: 0x3968a7f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3290-- REDIR: 0x3968b28420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--3290-- REDIR: 0x3968a81120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3290-- REDIR: 0x3968b336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--3290-- REDIR: 0x3968a8aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--3290-- REDIR: 0x3968a84500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--3290-- REDIR: 0x3968a7b520 (free) redirected to 0x4a063a9 (free)
+--3290-- REDIR: 0x3968a7a640 (malloc) redirected to 0x4a069ac (malloc)
+--3290-- REDIR: 0x3968a89670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--3290-- REDIR: 0x3968a81160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--3290-- REDIR: 0x3968a839a0 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--3290-- REDIR: 0x3968a839e0 (__GI_memset) redirected to 0x4a09a50 (memset)
+==3290== 
+==3290== HEAP SUMMARY:
+==3290==     in use at exit: 792 bytes in 2 blocks
+==3290==   total heap usage: 8 allocs, 6 frees, 269,345 bytes allocated
+==3290== 
+==3290== Searching for pointers to 2 not-freed blocks
+==3290== Checked 65,056 bytes
+==3290== 
+==3290== 224 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==3290==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==3290==    by 0x400F11: Image_save (answer07.c:160)
+==3290==    by 0x401DB0: main (<stdin>:88)
+==3290== 
+==3290== LEAK SUMMARY:
+==3290==    definitely lost: 224 bytes in 1 blocks
+==3290==    indirectly lost: 0 bytes in 0 blocks
+==3290==      possibly lost: 0 bytes in 0 blocks
+==3290==    still reachable: 568 bytes in 1 blocks
+==3290==         suppressed: 0 bytes in 0 blocks
+==3290== Reachable blocks (those to which a pointer was found) are not shown.
+==3290== To see them, rerun with: --leak-check=full --show-reachable=yes
+==3290== 
+==3290== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+--3290-- 
+--3290-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--3290-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==3290== 
+==3290== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)

@@ -1,0 +1,94 @@
+==26454== Memcheck, a memory error detector
+==26454== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==26454== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==26454== Command: ./a.out images/corrupt-testcases/07-comment-has-no-null-byte.ee264 student-out-21_-
+==26454== Parent PID: 26451
+==26454== 
+--26454-- 
+--26454-- Valgrind options:
+--26454--    --tool=memcheck
+--26454--    --leak-check=full
+--26454--    --verbose
+--26454--    --log-file=memcheck-21.log
+--26454-- Contents of /proc/version:
+--26454--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--26454-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--26454-- Page sizes: currently 4096, max supported 4096
+--26454-- Valgrind library directory: /usr/lib64/valgrind
+--26454-- Reading syms from /tmp/.eu3jWQ/a.out
+--26454-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--26454--    object doesn't have a dynamic symbol table
+--26454-- Reading syms from /lib64/ld-2.12.so
+--26454--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--26454--   .. build-id is valid
+--26454-- Scheduler: using generic scheduler lock implementation.
+--26454-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==26454== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-26454-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==26454== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-26454-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==26454== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-26454-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==26454== 
+==26454== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==26454== don't want to do, unless you know exactly what you're doing,
+==26454== or are doing some strange experiment):
+==26454==   /usr/lib64/valgrind/../../bin/vgdb --pid=26454 ...command...
+==26454== 
+==26454== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==26454==   /path/to/gdb ./a.out
+==26454== and then give GDB the following command
+==26454==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=26454
+==26454== --pid is optional if only one valgrind process is running
+==26454== 
+--26454-- REDIR: 0x3968617610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--26454-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--26454-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--26454-- REDIR: 0x3968617480 (index) redirected to 0x4a07c30 (index)
+--26454-- REDIR: 0x3968617500 (strcmp) redirected to 0x4a08570 (strcmp)
+--26454-- Reading syms from /lib64/libc-2.12.so
+--26454--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--26454--   .. build-id is valid
+--26454-- REDIR: 0x3968a84cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26454-- REDIR: 0x3968a86f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26454-- REDIR: 0x3968a82c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--26454-- REDIR: 0x3968a7f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26454-- REDIR: 0x3968b28420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--26454-- REDIR: 0x3968a81120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26454-- REDIR: 0x3968b336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--26454-- REDIR: 0x3968a8aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--26454-- REDIR: 0x3968a84500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--26454-- REDIR: 0x3968a7b520 (free) redirected to 0x4a063a9 (free)
+--26454-- REDIR: 0x3968a7a640 (malloc) redirected to 0x4a069ac (malloc)
+--26454-- REDIR: 0x3968a89670 (memcpy) redirected to 0x4a08b60 (memcpy)
+==26454== Invalid read of size 1
+==26454==    at 0x400B8C: Image_load (answer07.c:71)
+==26454==    by 0x401CB4: main (<stdin>:61)
+==26454==  Address 0x4c3b378 is 0 bytes after a block of size 88 alloc'd
+==26454==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==26454==    by 0x400B08: Image_load (answer07.c:64)
+==26454==    by 0x401CB4: main (<stdin>:61)
+==26454== 
+--26454-- REDIR: 0x3968a81160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--26454-- REDIR: 0x3968a839a0 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--26454-- REDIR: 0x3968a839e0 (__GI_memset) redirected to 0x4a09a50 (memset)
+==26454== 
+==26454== HEAP SUMMARY:
+==26454==     in use at exit: 0 bytes in 0 blocks
+==26454==   total heap usage: 6 allocs, 6 frees, 1,380 bytes allocated
+==26454== 
+==26454== All heap blocks were freed -- no leaks are possible
+==26454== 
+==26454== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+==26454== 
+==26454== 1 errors in context 1 of 1:
+==26454== Invalid read of size 1
+==26454==    at 0x400B8C: Image_load (answer07.c:71)
+==26454==    by 0x401CB4: main (<stdin>:61)
+==26454==  Address 0x4c3b378 is 0 bytes after a block of size 88 alloc'd
+==26454==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==26454==    by 0x400B08: Image_load (answer07.c:64)
+==26454==    by 0x401CB4: main (<stdin>:61)
+==26454== 
+--26454-- 
+--26454-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--26454-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==26454== 
+==26454== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)

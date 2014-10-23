@@ -1,0 +1,91 @@
+==8214== Memcheck, a memory error detector
+==8214== Copyright (C) 2002-2012, and GNU GPL'd, by Julian Seward et al.
+==8214== Using Valgrind-3.8.1 and LibVEX; rerun with -h for copyright info
+==8214== Command: ./a.out images/bmps/05-sagan-stamp.bmp student-out-09_05-sagan-stamp.ee264
+==8214== Parent PID: 8210
+==8214== 
+--8214-- 
+--8214-- Valgrind options:
+--8214--    --tool=memcheck
+--8214--    --leak-check=full
+--8214--    --verbose
+--8214--    --log-file=memcheck-09.log
+--8214-- Contents of /proc/version:
+--8214--   Linux version 2.6.32-431.23.3.el6.x86_64 (mockbuild@x86-027.build.eng.bos.redhat.com) (gcc version 4.4.7 20120313 (Red Hat 4.4.7-4) (GCC) ) #1 SMP Wed Jul 16 06:12:23 EDT 2014
+--8214-- Arch and hwcaps: AMD64, amd64-sse3-cx16
+--8214-- Page sizes: currently 4096, max supported 4096
+--8214-- Valgrind library directory: /usr/lib64/valgrind
+--8214-- Reading syms from /tmp/.eu3jWQ/a.out
+--8214-- Reading syms from /usr/lib64/valgrind/memcheck-amd64-linux
+--8214--    object doesn't have a dynamic symbol table
+--8214-- Reading syms from /lib64/ld-2.12.so
+--8214--   Considering /usr/lib/debug/.build-id/3b/fa45bce0e82e1d90d37a0cc8630f97f2003bf5.debug ..
+--8214--   .. build-id is valid
+--8214-- Scheduler: using generic scheduler lock implementation.
+--8214-- Reading suppressions file: /usr/lib64/valgrind/default.supp
+==8214== embedded gdbserver: reading from /tmp/vgdb-pipe-from-vgdb-to-8214-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==8214== embedded gdbserver: writing to   /tmp/vgdb-pipe-to-vgdb-from-8214-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==8214== embedded gdbserver: shared mem   /tmp/vgdb-pipe-shared-mem-vgdb-8214-by-patel344-on-ecegrid-thin3.ecn.purdue.edu
+==8214== 
+==8214== TO CONTROL THIS PROCESS USING vgdb (which you probably
+==8214== don't want to do, unless you know exactly what you're doing,
+==8214== or are doing some strange experiment):
+==8214==   /usr/lib64/valgrind/../../bin/vgdb --pid=8214 ...command...
+==8214== 
+==8214== TO DEBUG THIS PROCESS USING GDB: start GDB like this
+==8214==   /path/to/gdb ./a.out
+==8214== and then give GDB the following command
+==8214==   target remote | /usr/lib64/valgrind/../../bin/vgdb --pid=8214
+==8214== --pid is optional if only one valgrind process is running
+==8214== 
+--8214-- REDIR: 0x3968617610 (strlen) redirected to 0x38049551 (vgPlain_amd64_linux_REDIR_FOR_strlen)
+--8214-- Reading syms from /usr/lib64/valgrind/vgpreload_core-amd64-linux.so
+--8214-- Reading syms from /usr/lib64/valgrind/vgpreload_memcheck-amd64-linux.so
+--8214-- REDIR: 0x3968617480 (index) redirected to 0x4a07c30 (index)
+--8214-- REDIR: 0x3968617500 (strcmp) redirected to 0x4a08570 (strcmp)
+--8214-- Reading syms from /lib64/libc-2.12.so
+--8214--   Considering /usr/lib/debug/.build-id/73/3ad3a438b5a695f7a63a77413f9b2c8c94e8e6.debug ..
+--8214--   .. build-id is valid
+--8214-- REDIR: 0x3968a84cd0 (strcasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8214-- REDIR: 0x3968a86f90 (strncasecmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8214-- REDIR: 0x3968a82c40 (__GI_strrchr) redirected to 0x4a07ab0 (__GI_strrchr)
+--8214-- REDIR: 0x3968a7f6e0 (strcmp) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8214-- REDIR: 0x3968b28420 (__strcmp_sse42) redirected to 0x4a084d0 (strcmp)
+--8214-- REDIR: 0x3968a81120 (strlen) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8214-- REDIR: 0x3968b336f0 (__strlen_sse42) redirected to 0x4a07f90 (strlen)
+--8214-- REDIR: 0x3968a8aaf0 (strchrnul) redirected to 0x4a09fb0 (strchrnul)
+--8214-- REDIR: 0x3968a84500 (mempcpy) redirected to 0x4a0a020 (mempcpy)
+--8214-- REDIR: 0x3968a7b520 (free) redirected to 0x4a063a9 (free)
+--8214-- REDIR: 0x3968a7a640 (malloc) redirected to 0x4a069ac (malloc)
+--8214-- REDIR: 0x3968a89670 (memcpy) redirected to 0x4a08b60 (memcpy)
+--8214-- REDIR: 0x3968a81160 (__GI_strlen) redirected to 0x4a07fb0 (__GI_strlen)
+--8214-- REDIR: 0x3968a839a0 (memset) redirected to 0x480155c (_vgnU_ifunc_wrapper)
+--8214-- REDIR: 0x3968a839e0 (__GI_memset) redirected to 0x4a09a50 (memset)
+==8214== 
+==8214== HEAP SUMMARY:
+==8214==     in use at exit: 867 bytes in 2 blocks
+==8214==   total heap usage: 8 allocs, 6 frees, 309,671 bytes allocated
+==8214== 
+==8214== Searching for pointers to 2 not-freed blocks
+==8214== Checked 65,056 bytes
+==8214== 
+==8214== 299 bytes in 1 blocks are definitely lost in loss record 1 of 2
+==8214==    at 0x4A06A2E: malloc (vg_replace_malloc.c:270)
+==8214==    by 0x400F11: Image_save (answer07.c:160)
+==8214==    by 0x401DB0: main (<stdin>:88)
+==8214== 
+==8214== LEAK SUMMARY:
+==8214==    definitely lost: 299 bytes in 1 blocks
+==8214==    indirectly lost: 0 bytes in 0 blocks
+==8214==      possibly lost: 0 bytes in 0 blocks
+==8214==    still reachable: 568 bytes in 1 blocks
+==8214==         suppressed: 0 bytes in 0 blocks
+==8214== Reachable blocks (those to which a pointer was found) are not shown.
+==8214== To see them, rerun with: --leak-check=full --show-reachable=yes
+==8214== 
+==8214== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
+--8214-- 
+--8214-- used_suppression:      4 U1004-ARM-_dl_relocate_object
+--8214-- used_suppression:      2 glibc-2.5.x-on-SUSE-10.2-(PPC)-2a
+==8214== 
+==8214== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 6 from 6)
