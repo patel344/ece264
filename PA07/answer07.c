@@ -35,7 +35,7 @@ Image* Image_load(const char* filename){
 	}
 
 	if(!err){
-		if(!(header.magic_number = ECE264_IMAGE_MAGIC_NUMBER)){
+		if(!(header.magic_number == ECE264_IMAGE_MAGIC_NUMBER)){
 			fprintf(stderr,"Invalid header in '%s'\n",filename);
 			err = TRUE;
 		}
@@ -63,6 +63,8 @@ Image* Image_load(const char* filename){
 	if(!err){ //reading comment
 		tmp_im -> width = header.width;
 		tmp_im -> height = header.height;
+		tmp_im -> comment = NULL;
+		tmp_im -> data = NULL;
 		tmp_im -> comment = malloc(header.comment_len * sizeof(char));
 		
 		if(tmp_im -> comment == NULL){
@@ -70,7 +72,7 @@ Image* Image_load(const char* filename){
 			err = TRUE;
 		}else{
 			read = fread(tmp_im -> comment, sizeof(char), header.comment_len, fp);
-			if(read != header.comment_len || tmp_im -> comment[header.comment_len] != '\0'){
+			if(read != header.comment_len || tmp_im -> comment[header.comment_len-1] != '\0'){
 				fprintf(stderr,"Failed to allocate enough bytes for image data\n");
 				err = TRUE;
 			}
@@ -106,6 +108,11 @@ Image* Image_load(const char* filename){
 	if(fp){
 		fclose(fp);
 	}
+	if(tmp_im != NULL){
+		free(tmp_im -> comment);
+		free(tmp_im -> data);
+		free(tmp_im);
+	}
 	return im;
 }//end of Image_load function
 
@@ -113,9 +120,8 @@ void linearNormalization(int width,int height, uint8_t * intensity){
 	int i;
 	uint8_t min = 255;
 	uint8_t max = 0;
-	ImageHeader header;
 	
-	for(i= 0; i < (header.height * header.width); i++){
+	for(i= 0; i < (height * width); i++){
 		if(intensity[i] < min){
 			min = intensity[i];
 		}
@@ -123,7 +129,7 @@ void linearNormalization(int width,int height, uint8_t * intensity){
 			max = intensity[i];
 		}
 	}
-	for(i= 0; i < (header.height * header.width); i++){
+	for(i= 0; i < (height * width); i++){
 		intensity[i] = (intensity[i] - min) * 255.0 / (max-min);
 	}
 }//end of linearNormalization
@@ -131,7 +137,6 @@ void linearNormalization(int width,int height, uint8_t * intensity){
 int Image_save(const char* filename, Image* image){
 	int err = FALSE;
 	FILE* fp = NULL;
-	uint8_t* buffer = NULL;
 	size_t written = 0;
 
 	//open file for writing
@@ -141,15 +146,12 @@ int Image_save(const char* filename, Image* image){
 		return FALSE; //no file -> exit
 	}
 
-	//number of bytes stored on each row
-	size_t bytes_per_row = image -> width;
-
 	//Prepare the header
 	ImageHeader header;
 	header.magic_number = ECE264_IMAGE_MAGIC_NUMBER;
 	header.width = image -> width;
 	header.height = image -> height;
-	header.comment_len = strlen(image -> comment);
+	header.comment_len = strlen(image -> comment) + 1;
 
 	if(!err){
 		written = fwrite(&header,sizeof(ImageHeader),1,fp);
@@ -158,42 +160,28 @@ int Image_save(const char* filename, Image* image){
 			err = TRUE;
 		}
 	}
-	if(!err){ //write buffer
-		buffer = malloc(bytes_per_row);
-		if(buffer == NULL){
-			fprintf(stderr,"Error:failed to allocate write buffer\n");
+	if(!err){
+		written = fwrite(image -> comment, sizeof(char),header.comment_len,fp);
+		if(written != header.comment_len){
+			fprintf(stderr, "Error::\n");
 			err = TRUE;
-		}else{
-			memset(buffer,0,bytes_per_row);
 		}
 	}
 	if(!err){ //write pixels
-		uint8_t* read_ptr = image -> data;
-		int row;
-		int col;
-		
-		for(row = 0; row < header.height && !err; row++){
-			uint8_t* write_ptr = buffer;
-			for(col = 0; col < header.width; col++){
-				*write_ptr++ = *read_ptr;
-				read_ptr++; //advance to next pixel
-			}
-			//written line to file
-			written = fwrite(buffer,sizeof(uint8_t),bytes_per_row,fp);
-			if(written != bytes_per_row){
-				fprintf(stderr,"Failed to write pixel data to file\n");
-				err = TRUE;
-			}
+		//written line to file
+		written = fwrite(image -> data,sizeof(uint8_t),header.height*header.width,fp);
+		if(written != header.height*header.width){
+			fprintf(stderr,"Failed to write pixel data to file\n");
+			err = TRUE;
 		}
 	}
-	free(buffer);
 	if(fp){
 		fclose(fp);
 	}
 	return !err;
 }//end of Image_save
 
-void Image_free(Image * image){
+void Image_free(Image * image){	
 	free(image -> comment);
 	free(image -> data);
 	free(image);
