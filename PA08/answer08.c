@@ -26,15 +26,20 @@ int List_length(List * list){
 	}
 	return len;
 }
+
+int comparstr(const char *p1, const char *p2) {
+    return strcmp(p1,p2);
+}
+
 List * List_merge(List * lhs, List * rhs, int (*compar)(const char *, const char*)){
 	List * result = NULL;
-	if(compar(lhs->str,rhs->str) <= 0){
+	if(comparstr(lhs->str,rhs->str) <= 0){
 		result = lhs;
-		result->next = List_merge(lhs->next,rhs,int(*)compar(lhs->str,rhs->str));
+		result->next = List_merge(lhs->next,rhs,comparstr);
 	}
 	else{
 		result = lhs;
-		result->next = List_merge(lhs,rhs->next,int(*)compar(lhs->str,rhs->str));
+		result->next = List_merge(lhs,rhs->next,comparstr);
 	}
 	return(result);
 }
