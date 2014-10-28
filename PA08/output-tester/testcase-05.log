@@ -1,0 +1,6 @@
+
+Testcase 5
+   Testing: List_destroyNode(list), where list is: "single node" ==> NULL
+   Memory errors detected.
+   Valgrind log saved in output-tester/testcase-05.memcheck.log.
+Testcase FAILED. Log file saved to testcase-05.log

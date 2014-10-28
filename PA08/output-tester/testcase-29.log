@@ -1,0 +1,13 @@
+
+Testcase 29
+   Testing List_sort(list, compar), where:
+   
+   + compar is: return strcmp(a, b)
+   + list is: "a" ==> "c" ==> "e" ==> "g" ==> "h" ==> "i" ==> "j" ==> NULL
+   
+   sorted is  : NULL
+   solution is: "a" ==> "c" ==> "e" ==> "g" ==> "h" ==> "i" ==> "j" ==> NULL
+   Error: sorted solution has length 0, but it should be 7
+   Memory errors detected.
+   Valgrind log saved in output-tester/testcase-29.memcheck.log.
+Testcase FAILED. Log file saved to testcase-29.log

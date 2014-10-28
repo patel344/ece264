@@ -1,0 +1,6 @@
+
+Testcase 6
+   Testing: List_destroyNode(list), where list is: "one" ==> "two" ==> "three" ==> "four" ==> "five" ==> "six" ==> NULL
+   Memory errors detected.
+   Valgrind log saved in output-tester/testcase-06.memcheck.log.
+Testcase FAILED. Log file saved to testcase-06.log

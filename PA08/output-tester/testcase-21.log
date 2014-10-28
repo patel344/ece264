@@ -1,0 +1,20 @@
+
+Testcase 21
+   Testing List_merge(lhs, rhs, compar), where:
+   
+   + compar is: return -strcmp(a, b)
+   + lhs is: "7" ==> "5" ==> "3" ==> "2" ==> NULL
+   + rhs is: "23" ==> "19" ==> "17" ==> "13" ==> "11" ==> NULL
+   Program received signal SIGSEGV, Segmentation fault.
+   0x000000000040093c in List_merge (lhs=0x604210, rhs=0x0, compar=0x4008f7 <comparstr>) at answer08.c:36
+   36		if(comparstr(lhs->str,rhs->str) <= 0){
+   #0  0x000000000040093c in List_merge (lhs=0x604210, rhs=0x0, compar=0x4008f7 <comparstr>) at answer08.c:36
+   #1  0x00000000004009a7 in List_merge (lhs=0x604210, rhs=0x604010, compar=0x4008f7 <comparstr>) at answer08.c:42
+   #2  0x00000000004009a7 in List_merge (lhs=0x604210, rhs=0x604050, compar=0x4008f7 <comparstr>) at answer08.c:42
+   #3  0x00000000004009a7 in List_merge (lhs=0x604210, rhs=0x604090, compar=0x4008f7 <comparstr>) at answer08.c:42
+   #4  0x00000000004009a7 in List_merge (lhs=0x604210, rhs=0x6040d0, compar=0x4008f7 <comparstr>) at answer08.c:42
+   #5  0x00000000004009a7 in List_merge (lhs=0x604210, rhs=0x604110, compar=0x400c68 <strcmp_reverse>) at answer08.c:42
+   #6  0x0000000000401705 in test_merge (lhs=0x604210, rhs=0x604110, compar=0x400c68 <strcmp_reverse>) at testcases/test_List_merge.c:52
+   #7  0x00000000004019cd in tests_List_merge (test_number=6) at testcases/test_List_merge.c:115
+   #8  0x000000000040204a in main (argc=2, argv=0x7fffffffe4d8) at <stdin>:159
+Testcase FAILED. Log file saved to testcase-21.log
