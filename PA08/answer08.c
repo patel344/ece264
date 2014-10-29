@@ -32,6 +32,18 @@ int comparstr(const char *p1, const char *p2) {
     return strcmp(p1,p2);
 }
 
+List* append(List* result, List* list){
+	List* begin = result;
+	if(result == NULL){
+		return list;
+	}
+	while(result->next != NULL){
+		result = result->next;
+	}
+	result->next = list;
+	return (begin);
+}
+
 List * List_merge(List * lhs, List * rhs, int (*compar)(const char *, const char*)){
 	List * result = NULL;
 	if(lhs == NULL || rhs == NULL){
@@ -45,20 +57,36 @@ List * List_merge(List * lhs, List * rhs, int (*compar)(const char *, const char
 			return lhs;
 		}
 	}
-	else{
+	List * right = rhs->next;
+	List * left = lhs->next;
+	while(lhs != NULL && rhs != NULL){ 
 		if(compar(lhs->str,rhs->str) <= 0){
-			result = List_createNode(lhs->str);
-			result->next = List_merge(lhs->next,rhs,compar);
+			lhs->next = NULL;
+			result = append(result,lhs);
+			lhs = left;
+			if(lhs != NULL){
+				left = lhs->next;
+			}
 		}
 		else{
-			result = List_createNode(rhs->str);
-			result->next = List_merge(lhs,rhs->next,compar);
+			rhs->next = NULL;
+			result = append(result,rhs);
+			rhs = right;
+			if(rhs != NULL){
+				right = rhs->next;
+			}
 		}
-		return(result);
 	}
+		if(lhs == NULL && rhs != NULL){  //IF LHS List is Shorter
+			return(append(result,rhs));
+		}
+		if(lhs != NULL && rhs == NULL){ //IF RHS List is Shorter
+			return(append(result,lhs));
+		}
+	return(result);
 }
 
-void split_list(List* list, List** newHead){
+void split_list(List* list, List** newHead){ //SPLITS LIST INTO TWO SEPARATE LISTS OF EQUAL(ISH) LENGTHS
    	int i, len = List_length(list);
 	List* itr = list;
 	*newHead = list->next;
@@ -76,9 +104,8 @@ List * List_sort(List * list, int (*compar)(const char *, const char*)){
 		return list;  //BASE CASE
 	}
 	split_list(list,&newHead);
-	List_sort(list,compar);
-	List_sort(newHead,compar);
-	//list = List_merge(newHead,list,compar);
-	
-	return (List_merge(list,newHead,compar));
+	list = List_sort(list,compar);   //RECURSIVE CASE
+	newHead = List_sort(newHead,compar); //RECURSIVE CASE
+	list = List_merge(list,newHead,compar); //MERGE THE TWO SORTED LISTS
+	return (list);
 }
