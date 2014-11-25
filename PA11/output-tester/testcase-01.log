@@ -1,0 +1,10 @@
+
+Testcase 1 :: 01-tibbs.txt-huff
+   Reading file: 'inputs/01-tibbs.txt-huff', textmode = TRUE.
+   Huffman coding tree is:
+   
+     
+   Your solution is different to the expected solution.
+   Review the files "/home/shay/a/patel344/ECE264/solutions/ece264/PA11/output-tester/01-tibbs.txt-huff.student.output" "/home/shay/a/patel344/ECE264/solutions/ece264/PA11/output-tester/01-tibbs.txt-huff.solution.output"
+   to see where you went wrong. The 'diff' command may be useful.
+Testcase FAILED. Log file saved to testcase-01.log

@@ -1,0 +1,10 @@
+
+Testcase 2 :: 02-godfather.txt-huff
+   Reading file: 'inputs/02-godfather.txt-huff', textmode = TRUE.
+   Huffman coding tree is:
+   
+     
+   Your solution is different to the expected solution.
+   Review the files "/home/shay/a/patel344/ECE264/solutions/ece264/PA11/output-tester/02-godfather.txt-huff.student.output" "/home/shay/a/patel344/ECE264/solutions/ece264/PA11/output-tester/02-godfather.txt-huff.solution.output"
+   to see where you went wrong. The 'diff' command may be useful.
+Testcase FAILED. Log file saved to testcase-02.log
