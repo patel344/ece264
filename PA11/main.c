@@ -31,10 +31,11 @@ int main(int argc, char** argv)
     //Stack_destroy(newStack);
     Stack_pushFront(newStack, popped_tree);
     //print_stack(newStack);
-    List_destroy(newStack->head->next);
-    free(newStack->head);
-    free(newStack);
-    //print_stack(newStack);
+    Stack_popPopCombinePush(newStack);
+    //List_destroy(newStack->head->next);
+    //free(newStack->head);
+    //free(newStack);
+    print_stack(newStack);
     //Stack_destroy(newStack);
     
 
