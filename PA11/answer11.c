@@ -93,13 +93,23 @@ int Stack_isEmpty(Stack * stack)
 
 HuffNode * Stack_popFront(Stack * stack)
 {
+    if(stack->head == NULL){
+	printf("Empty\n");
+	return 0;
+    }
     StackNode* temp = stack->head;
+    stack->head = temp->next;
+    HuffNode* tree = temp->tree;
+    free(temp);
+    return tree;
+
+    /*    StackNode* temp = stack->head;
     HuffNode* tree = temp->tree;      //is this legal???
     temp = stack->head->next;
     HuffNode_destroy(stack->head->tree);
     free(stack->head);
     stack->head = temp;
-    return(tree);
+    return(tree); */
 }
 
 void Stack_pushFront(Stack * stack, HuffNode * tree)
@@ -109,6 +119,16 @@ void Stack_pushFront(Stack * stack, HuffNode * tree)
     new_head->next = stack->head;
     stack->head = new_head;
     //free(new_head);
+}
+void Stack_popPopCombinePush(Stack * stack)
+{
+    HuffNode* tn1 = Stack_popFront(stack);
+    HuffNode* tn2 = Stack_popFront(stack);
+    HuffNode* tn = malloc(sizeof(HuffNode));
+    tn->value = tn1->value + tn2->value;
+    tn->left = tn1;
+    tn->right = tn2;
+    Stack_pushFront(stack,tn);
 }
 HuffNode * HuffTree_readTextHeader(FILE * fp){return 0;}
 HuffNode * HuffTree_readBinaryHeader(FILE * fp){return 0;}
