@@ -85,13 +85,13 @@ void Stack_destroy(Stack * stack)
 }
 int Stack_isEmpty(Stack * stack)
 {
-    if(stack != NULL){
+    if(stack->head != NULL){
 	return 1;
     }
     return 0;
 }
 
-HuffNode * Stack_popFront(Stack * stack)
+HuffNode * Stack_popFront(Stack * stack) //do I need to call HuffNode_destroy()
 {
     if(stack->head == NULL){
 	printf("Empty\n");
@@ -102,23 +102,14 @@ HuffNode * Stack_popFront(Stack * stack)
     HuffNode* tree = temp->tree;
     free(temp);
     return tree;
-
-    /*    StackNode* temp = stack->head;
-    HuffNode* tree = temp->tree;      //is this legal???
-    temp = stack->head->next;
-    HuffNode_destroy(stack->head->tree);
-    free(stack->head);
-    stack->head = temp;
-    return(tree); */
 }
 
-void Stack_pushFront(Stack * stack, HuffNode * tree)
+void Stack_pushFront(Stack * stack, HuffNode * tree)  //do I need to free new_head
 {
     StackNode * new_head = malloc(sizeof(StackNode));
     new_head->tree = tree;
     new_head->next = stack->head;
     stack->head = new_head;
-    //free(new_head);
 }
 void Stack_popPopCombinePush(Stack * stack)
 {
@@ -126,9 +117,105 @@ void Stack_popPopCombinePush(Stack * stack)
     HuffNode* tn2 = Stack_popFront(stack);
     HuffNode* tn = malloc(sizeof(HuffNode));
     tn->value = tn1->value + tn2->value;
-    tn->left = tn1;
-    tn->right = tn2;
+    tn->left = tn2;
+    tn->right = tn1;
     Stack_pushFront(stack,tn);
 }
-HuffNode * HuffTree_readTextHeader(FILE * fp){return 0;}
-HuffNode * HuffTree_readBinaryHeader(FILE * fp){return 0;}
+HuffNode * HuffTree_readTextHeader(FILE * fp)
+{
+    Stack * stack = Stack_create();
+    int read;
+    int done = 0;
+    int char_val;
+    if(fp == NULL){
+	return NULL;
+    }
+    while(done == 0){
+	read = fgetc(fp);
+	if(!read){
+	    break;
+	}
+	if(read == '1'){
+	    char_val = fgetc(fp);
+	    StackNode* value = List_createNode(char_val);
+	    Stack_pushFront(stack, value->tree);
+	    free(value);
+	}
+	else if(read == '0'){
+	    if(Stack_isEmpty(stack) == 1){
+		if(stack->head->next == NULL){
+		    done = 1;
+		}
+		else{
+		    Stack_popPopCombinePush(stack);
+		}
+	    }
+	}
+	else{
+	    printf("%d\n",read);
+	    printf("Error, neither a 0 or 1 was read\n");
+	}
+    }
+    HuffNode* tree = stack->head->tree;
+    free(stack->head);
+    free(stack);
+    return (tree);
+}
+//MODIFIED FROM AARONS STEP THROUGH OF BITWISE OPERATIONS
+int get_bit(FILE* fp, int* rem_num, char* bitarr)
+{
+    if(*rem_num == 0){ //empty
+	int ch = fgetc(fp);
+	if(ch == -1){
+	    return -1;
+	}
+	*bitarr = ch;
+       	*rem_num = 8;
+    }
+    //ready to dispense bit nummber (*rem_num -1)
+    int bit_no = *rem_num - 1;
+    *rem_num -= 1; //done with this bit
+    return(*bitarr & (1 << bit_no)) >> bit_no;
+}
+//MODIFIED FROM COURSE NOTES ON PAGE 481
+HuffNode * HuffTree_readBinaryHeader(FILE * fp)
+{
+    int done = 0;
+    int rem_num = 0;
+    char bitarr;
+    Stack* stack = Stack_create();
+    
+    while(done == 0){
+	int bit_val = get_bit(fp, &rem_num, &bitarr);
+	if(bit_val == 1){
+	    int bitcount;
+	    unsigned char value = 0;
+	    for(bitcount = 0; bitcount < 8; bitcount++){
+		value <<= 1; //shift left by one
+		bit_val = get_bit(fp, &rem_num, &bitarr);
+		value |= bit_val;
+	    }
+	    
+	    StackNode* ret_val = List_createNode(value);
+	    Stack_pushFront(stack, ret_val->tree);
+	    free(ret_val); 
+	}
+	else if(bit_val == 0){
+	    if(Stack_isEmpty(stack) == 1){  
+		if(stack->head->next == NULL){ 
+		    done = 1;
+		}
+		else{
+		    Stack_popPopCombinePush(stack);
+		}
+	    }
+	}
+	else{
+	    printf("Error, not reading correct bit values\n");
+	}
+    }
+    HuffNode* tree = stack->head->tree;
+    free(stack->head);
+    free(stack);
+    return tree;
+}

@@ -2,9 +2,61 @@
 Testcase 4 :: 04-waterfront.txt-huff
    Reading file: 'inputs/04-waterfront.txt-huff', textmode = TRUE.
    Huffman coding tree is:
+   2430
+        739
+             ' '
+             707
+                  324
+                       214
+                            i
+                            m
+                       n
+                  383
+                       171
+                            I
+                            b
+                       212
+                            h
+                            l
+        1691
+             874
+                  427
+                       316
+                            83
+                                 '
+                                 ,
+                            233
+                                 r
+                                 w
+                       o
+                  447
+                       350
+                            234
+                                 43
+                                      \n
+                                      !
+                                 191
+                                      Y
+                                      f
+                            t
+                       a
+             817
+                  201
+                       d
+                       e
+                  616
+                       384
+                            285
+                                 239
+                                      v
+                                      y
+                                 .
+                            c
+                       232
+                            s
+                            u
    
-     
-   Your solution is different to the expected solution.
-   Review the files "/home/shay/a/patel344/ECE264/solutions/ece264/PA11/output-tester/04-waterfront.txt-huff.student.output" "/home/shay/a/patel344/ECE264/solutions/ece264/PA11/output-tester/04-waterfront.txt-huff.solution.output"
-   to see where you went wrong. The 'diff' command may be useful.
-Testcase FAILED. Log file saved to testcase-04.log
+   Message is:
+   You don't understand! I coulda had class. I coulda been a contender. I could've been somebody, instead of a bum, which is what I am.
+   
+Pass.
