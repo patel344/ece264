@@ -86,9 +86,9 @@ void Stack_destroy(Stack * stack)
 int Stack_isEmpty(Stack * stack)
 {
     if(stack->head != NULL){
-	return 1;
+	return 0;
     }
-    return 0;
+    return 1;
 }
 
 HuffNode * Stack_popFront(Stack * stack) //do I need to call HuffNode_destroy()
@@ -142,7 +142,7 @@ HuffNode * HuffTree_readTextHeader(FILE * fp)
 	    free(value);
 	}
 	else if(read == '0'){
-	    if(Stack_isEmpty(stack) == 1){
+	    if(Stack_isEmpty(stack) == 0){
 		if(stack->head->next == NULL){
 		    done = 1;
 		}
@@ -201,7 +201,7 @@ HuffNode * HuffTree_readBinaryHeader(FILE * fp)
 	    free(ret_val); 
 	}
 	else if(bit_val == 0){
-	    if(Stack_isEmpty(stack) == 1){  
+	    if(Stack_isEmpty(stack) == 0){  
 		if(stack->head->next == NULL){ 
 		    done = 1;
 		}
